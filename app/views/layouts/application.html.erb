@@ -11,6 +11,13 @@
   <h1><%= link_to 'ts', tshirts_path %></h1>
   <%= link_to 'New Tshirt', new_tshirt_path %>
 </header>
+<% unless user_signed_in? %>
+	<h3><%= link_to "Sign In", new_user_session_path %></h3>
+	<h3><%= link_to "Sign Up", new_user_registration_path %></h3>
+<% else %>
+	<h2>Hello, <%= link_to current_user.email %></h2>
+	<h3><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></h3>
+<% end %>
 
 <%= yield %>
 

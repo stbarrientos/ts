@@ -1,5 +1,7 @@
 class TshirtsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:edit, :create, :update, :destroy]
+
   def index
     @tshirts = Tshirt.all
   end
@@ -37,6 +39,7 @@ class TshirtsController < ApplicationController
   end
 
   private
+
   def tshirt_params
     params.require(:tshirt).permit(:title, :photo_url)
   end
